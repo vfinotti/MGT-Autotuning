@@ -58,7 +58,7 @@ tcl_transm_name = config.get('test','tcl_transm_name')
 tcl_rcv_name = config.get('test','tcl_rcv_name')
 results_dir = config.get('test','results_dir')
 results_name = config.get('test','results_name')
-desired_area = config.get('test','desired_area')
+desired_area = config.getint('test','desired_area')
 
 mgt = format_to_list(mgt)
 TXDIFFSWING = format_to_list(TXDIFFSWING)
