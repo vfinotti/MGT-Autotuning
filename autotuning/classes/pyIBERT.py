@@ -22,7 +22,7 @@
 #-----------------------------------------------------------------------------
 
 
-from XilinxTCL import XilinxTCL
+from classes.XilinxTCL import XilinxTCL
 import time
 
 class pyIBERT(XilinxTCL):
