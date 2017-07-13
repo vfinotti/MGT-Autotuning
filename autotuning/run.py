@@ -50,6 +50,17 @@ results_dir = config.get('test','results_dir')
 results_name = config.get('test','results_name')
 desired_area = config.get('test','desired_area')
 
+mgt = mgt.replace(",\n",",")
+mgt = mgt.split(",")
+TXDIFFSWING = TXDIFFSWING.replace(",\n",",")
+TXDIFFSWING = TXDIFFSWING.split(",")
+TXPOST = TXPOST.replace(",\n",",")
+TXPOST = TXPOST.split(",")
+TXPRE = TXPRE.replace(",\n",",")
+TXPRE = TXPRE.split(",")
+RXTERM = RXTERM.replace(",\n",",")
+RXTERM = RXTERM.split(",")
+
 # Main script
 print("----------------------------------------------------------------------")
 print("Creating Instance 0")
