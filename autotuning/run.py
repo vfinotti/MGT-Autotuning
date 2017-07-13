@@ -57,8 +57,8 @@ rcv = pyIBERT(server0_addr,server0_port,target0_name,target0_freq)
 print("Creating Instance 1")
 transm = pyIBERT(server1_addr,server1_port,target1_name,target1_freq)
 
-rcv.source("./" + tcl_dir + kc705_rcv_setup + ".tcl")
-transm.source("./" + tcl_dir + kc705_transm_setup + ".tcl")
+rcv.source("./" + tcl_dir + tcl_rcv_name + ".tcl")
+transm.source("./" + tcl_dir + tcl_transm_name + ".tcl")
 
 for mgt_idx in range(len(mgt)):
 
