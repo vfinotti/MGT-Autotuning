@@ -27,6 +27,11 @@ import time
 import os
 from configparser import SafeConfigParser
 
+# Functions
+def create_dir(dir):
+    # checks if data subdirectory exists. If not, create it.
+    os.makedirs(os.getcwd() + "/" + os.path.dirname(dir), exist_ok=True)
+
 # Load init
 config = SafeConfigParser()
 config.read('config.ini')
@@ -70,6 +75,8 @@ transm = pyIBERT(server1_addr,server1_port,target1_name,target1_freq)
 
 rcv.source("./" + tcl_dir + tcl_rcv_name + ".tcl")
 transm.source("./" + tcl_dir + tcl_transm_name + ".tcl")
+
+create_dir(results_dir)
 
 for mgt_idx in range(len(mgt)):
 
