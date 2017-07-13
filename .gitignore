@@ -1,2 +1,9 @@
 # Emacs temporary files
 *~
+
+# Python compilation files and dir
+__pycache__/
+
+# Vivado files
+*.jou
+*.log
