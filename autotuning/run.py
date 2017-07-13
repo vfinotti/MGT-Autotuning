@@ -32,6 +32,11 @@ def create_dir(dir):
     # checks if data subdirectory exists. If not, create it.
     os.makedirs(os.getcwd() + "/" + os.path.dirname(dir), exist_ok=True)
 
+def format_to_list(data):
+    data = data.replace(",\n",",")
+    data = data.split(",")
+    return data
+
 # Load init
 config = SafeConfigParser()
 config.read('config.ini')
@@ -55,16 +60,11 @@ results_dir = config.get('test','results_dir')
 results_name = config.get('test','results_name')
 desired_area = config.get('test','desired_area')
 
-mgt = mgt.replace(",\n",",")
-mgt = mgt.split(",")
-TXDIFFSWING = TXDIFFSWING.replace(",\n",",")
-TXDIFFSWING = TXDIFFSWING.split(",")
-TXPOST = TXPOST.replace(",\n",",")
-TXPOST = TXPOST.split(",")
-TXPRE = TXPRE.replace(",\n",",")
-TXPRE = TXPRE.split(",")
-RXTERM = RXTERM.replace(",\n",",")
-RXTERM = RXTERM.split(",")
+mgt = format_to_list(mgt)
+TXDIFFSWING = format_to_list(TXDIFFSWING)
+TXPOST = format_to_list(TXPOST)
+TXPRE = format_to_list(TXPRE)
+RXTERM = format_to_list(RXTERM)
 
 # Main script
 print("----------------------------------------------------------------------")
