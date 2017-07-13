@@ -26,10 +26,11 @@ from XilinxTCL import XilinxTCL
 import time
 
 class pyIBERT(XilinxTCL):
-  def __init__(self, server_addr, server_port, target_addr, target_port):
+  def __init__(self, server_addr, server_port, target_name, target_freq):
     XilinxTCL.__init__(self)
     self.server_url = server_addr + ":" + server_port
-    self.target_url = target_addr + ":" + target_port
+    self.target_name = target_name
+    self.target_freq = target_freq
     self.connect()
 
   def connect(self):
@@ -40,10 +41,11 @@ class pyIBERT(XilinxTCL):
     time.sleep(3) # required delay to refresh information (xilinx bug)
     self.sendCommand("disconnect_hw_server " + self.server_url)
     self.sendCommand("connect_hw_server -url "+ self.server_url)
-    self.sendCommand("current_hw_target [get_hw_targets */xilinx_tcf/*/"
-                     + self.target_url + "]")
-    self.sendCommand("set_property PARAM.FREQUENCY 10000000 [get_hw_targets */xilinx_tcf/*/"
-                     + self.target_url + "]")
+    self.sendCommand("current_hw_target [get_hw_targets */xilinx_tcf/*"
+                     + self.target_name + "*]")
+    self.sendCommand("set_property PARAM.FREQUENCY " + self.target_freq
+                     + " [get_hw_targets */xilinx_tcf/*"
+                     + self.target_name + "*]")
     self.sendCommand("open_hw_target")
     self.sendCommand("current_hw_device [lindex [get_hw_devices] 0]")
     self.sendCommand("refresh_hw_device -update_hw_probes false [lindex [get_hw_devices] 0]")
