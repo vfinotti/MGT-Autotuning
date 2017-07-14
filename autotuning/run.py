@@ -118,7 +118,7 @@ for mgt_idx in range(len(mgt)):
                     rcv.sendCommand("set_property PORT.GTRXRESET 0 [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
                     rcv.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
 
-                    print("------ DFE_8gbps - " + mgt[mgt_idx])
+                    print("------ Transceiver - " + mgt[mgt_idx])
                     print("------ Iter: " + str(iter))
                     print(iter)
                     iter = iter+1
