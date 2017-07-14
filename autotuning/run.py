@@ -117,14 +117,8 @@ for mgt_idx in range(len(mgt)):
                 for l in RXTERM[::1]:
                     rcv.set_property("RXTERM", l, obj)
 
-                    transm.sendCommand("set_property PORT.GTTXRESET 1 [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
-                    transm.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
-                    transm.sendCommand("set_property PORT.GTTXRESET 0 [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
-                    transm.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
-                    rcv.sendCommand("set_property PORT.GTRXRESET 1 [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
-                    rcv.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
-                    rcv.sendCommand("set_property PORT.GTRXRESET 0 [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
-                    rcv.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
+                    transm.reset_all_gth_tx()
+                    rcv.reset_all_gth_rx()
 
                     print("------ Transceiver - " + mgt[mgt_idx])
                     print("------ Iter: " + str(iter))
