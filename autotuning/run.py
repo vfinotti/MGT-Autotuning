@@ -37,6 +37,14 @@ def format_to_list(data):
     data = data.split(",")
     return data
 
+def write_result_csv(f, TXDIFFSWING, TXPRE, TXPOST, RXTERM, scan_area):
+    f.write(i
+            + "," +  TXDIFFSWING
+            + "," +  TXPRE
+            + "," +  TXPOST
+            + "," +  scan_area
+            + "\n")
+
 # Load init
 config = SafeConfigParser()
 config.read('config.ini')
@@ -140,13 +148,7 @@ for mgt_idx in range(len(mgt)):
                             scan_area = rcv.get_property("Open_Area", "get_hw_sio_scan")
                             #scan_ber = rcv.get_property("RX_BER", obj)
                             rcv.scan_remove_all()
-                            f.write(i
-                                    + "," +  j
-                                    + "," +  k
-                                    + "," +  l
-                                    + "," +  scan_area
-                                    + "\n")
-
+                            write_result_csv(f, i, j, k, l, scan_area)
                             if int(float(scan_area)) > int(float(best_area)):
                                 best_area = scan_area
                                 best_diff = i
@@ -172,13 +174,7 @@ for mgt_idx in range(len(mgt)):
     print("exit main()")
 
     f.write("------------BEST------------\n")
-    f.write(best_diff
-            + "," +  best_txpre
-            + "," +  best_txpost
-            + "," +  best_rx
-            + "," +  best_area
-            + "\n")
-
+    write_result_csv(f, best_diff, best_txpre, best_txpost, best_rx, best_area)
     f.close()
 
     print("End of " + mgt[mgt_idx])
