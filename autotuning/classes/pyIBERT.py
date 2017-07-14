@@ -100,3 +100,7 @@ class pyIBERT(XilinxTCL):
                      "-of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
     self.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects "+
                      "[get_hw_sio_linkgroups {LINKGROUP_0}]]")
+
+  def close_hw(self):
+    self.sendCommand("close_hw")
+    self.terminate()

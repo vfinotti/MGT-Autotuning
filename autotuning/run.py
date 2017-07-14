@@ -178,8 +178,5 @@ for mgt_idx in range(len(mgt)):
 
     print("End of " + mgt[mgt_idx])
 
-rcv.sendCommand("close_hw")
-transm.sendCommand("close_hw")
-
-rcv.terminate()
-transm.terminate()
+transm.close_hw()
+rcv.close_hw()
