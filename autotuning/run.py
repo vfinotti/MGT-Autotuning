@@ -67,6 +67,7 @@ tcl_rcv_name = config.get('test','tcl_rcv_name')
 results_dir = config.get('test','results_dir')
 results_name = config.get('test','results_name')
 desired_area = config.getint('test','desired_area')
+include_all_results = config.getboolean('test','include_all_results')
 
 mgt = format_to_list(mgt)
 TXDIFFSWING = format_to_list(TXDIFFSWING)
@@ -149,6 +150,10 @@ for mgt_idx in range(len(mgt)):
                                 best_txpre = j
                                 best_txpost = k
                                 best_rx = l
+
+                    if (link == "0" or int(err,16) != 0) and include_all_results:
+                        write_result_csv(f, i, j, k, l, "0")
+
                     if int(float(best_area)) > desired_area:
                         break
                 if int(float(best_area)) > desired_area:
