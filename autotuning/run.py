@@ -38,10 +38,10 @@ def format_to_list(data):
     return data
 
 def write_result_csv(f, TXDIFFSWING, TXPRE, TXPOST, RXTERM, scan_area):
-    f.write(i
-            + "," +  TXDIFFSWING
+    f.write(TXDIFFSWING
             + "," +  TXPRE
             + "," +  TXPOST
+            + "," +  RXTERM
             + "," +  scan_area
             + "\n")
 
