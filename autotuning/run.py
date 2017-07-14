@@ -128,7 +128,9 @@ for mgt_idx in range(len(mgt)):
 
                     rcv.reset_sio_link_error(obj)
                     rcv.refresh_hw_sio(obj)
-                    time.sleep(6) # parameters are not instantly refreshed
+                    time.sleep(1) # parameters are not instantly
+                                    # refreshed. Adjust it to be as small as
+                                    # possible for your setup
                     link = rcv.get_property("LOGIC.LINK", obj)
 
                     if link == "1":
