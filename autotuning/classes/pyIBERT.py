@@ -80,3 +80,23 @@ class pyIBERT(XilinxTCL):
 
   def refresh_hw_sio(self, obj):
     self.sendCommand("refresh_hw_sio [" + obj + "]")
+
+  def reset_all_gth_tx(self):
+    self.sendCommand("set_property PORT.GTTXRESET 1 [get_hw_sio_links "+
+                     "-of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
+    self.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects "+
+                     "[get_hw_sio_linkgroups {LINKGROUP_0}]]")
+    self.sendCommand("set_property PORT.GTTXRESET 0 [get_hw_sio_links "+
+                     "-of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
+    self.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects "+
+                     "[get_hw_sio_linkgroups {LINKGROUP_0}]]")
+
+  def reset_all_gth_rx(self):
+    self.sendCommand("set_property PORT.GTRXRESET 1 [get_hw_sio_links "+
+                     "-of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
+    self.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects "+
+                     "[get_hw_sio_linkgroups {LINKGROUP_0}]]")
+    self.sendCommand("set_property PORT.GTRXRESET 0 [get_hw_sio_links "+
+                     "-of_objects [get_hw_sio_linkgroups {LINKGROUP_0}]]")
+    self.sendCommand("commit_hw_sio [get_hw_sio_links -of_objects "+
+                     "[get_hw_sio_linkgroups {LINKGROUP_0}]]")
