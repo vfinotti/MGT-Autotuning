@@ -109,11 +109,11 @@ for mgt_idx in range(len(mgt)):
     best_txpost = TXPOST[0]
     best_txpre = TXPRE[0]
 
-    for i in TXDIFFSWING[::4]:
+    for i in TXDIFFSWING[::1]:
         transm.set_property("TXDIFFSWING", i, obj)
-        for j in TXPRE[::4]:
+        for j in TXPRE[::1]:
             transm.set_property("TXPRE", j, obj)
-            for k in TXPOST[::4]:
+            for k in TXPOST[::1]:
                 transm.set_property("TXPOST", k, obj)
                 for l in RXTERM[::1]:
                     rcv.set_property("RXTERM", l, obj)
