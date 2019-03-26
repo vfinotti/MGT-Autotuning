@@ -40,12 +40,12 @@ def format_to_list(data):
     data = data.split(",")
     return data
 
-def write_result_csv(f, TXDIFFSWING, TXPRE, TXPOST, RXTERM, link, scan_area):
+def write_result_csv(f, TXDIFFSWING, TXPRE, TXPOST, RXTERM, err, scan_area):
     f.write(TXDIFFSWING
             + "," +  TXPRE
             + "," +  TXPOST
             + "," +  RXTERM
-            + "," +  link
+            + "," +  err
             + "," +  scan_area
             + "\n")
 
@@ -145,6 +145,7 @@ for mgt_idx in range(len(mgt)):
                                     # refreshed. Adjust it to be as small as
                                     # possible for your setup
                     link = rcv.get_property("LOGIC.LINK", obj)
+                    err = "-1"
 
                     if link == "1":
                         err = rcv.get_property("LOGIC.ERRBIT_COUNT", obj)
@@ -162,7 +163,7 @@ for mgt_idx in range(len(mgt)):
                             write_result_csv(f, i, j, k, l, str(int(err,16)), scan_area)
                             if int(float(scan_area)) > int(float(best_area)):
                                 best_area = scan_area
-                                best_err = int(err,16)
+                                best_err = str(int(err,16))
                                 best_diff = i
                                 best_txpre = j
                                 best_txpost = k
