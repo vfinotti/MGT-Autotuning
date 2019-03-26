@@ -59,6 +59,15 @@ The autotuning script is run by the following command:
 $ python3 run.py
 ```
 
+### [Optional] Run the automated autotuning script
+This configures the FPGAs and the Vivado instances remain open (no need to start Vivado by yourself). 
+Please create and/or adjust the hw_*.tcl as well as run_MGT_autotune.sh in the automate folder and run:
+```sh
+$ cd automate
+$ ./run_MGT_autotune.sh
+```
+
+
 It loads the parameters in *config.ini*, opening two vivado instances and
 connecting one to the transmitter and the other to the receiver FPGA. The
 initial setting it then loaded through TCL files, which can set the initial
