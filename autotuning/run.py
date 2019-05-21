@@ -60,7 +60,7 @@ server1_addr = config.get('hw_server','server1_addr')
 server1_port = config.get('hw_server','server1_port')
 target1_name = config.get('hw_server','target1_name')
 target1_freq = config.get('hw_server','target1_freq')
-mgt = config.get('mgt_parameters','mgt')
+mgt_rx = config.get('mgt_parameters','mgt_rx')
 mgt_tx = config.get('mgt_parameters','mgt_tx')
 TXDIFFSWING = config.get('mgt_parameters','TXDIFFSWING')
 TXPOST = config.get('mgt_parameters','TXPOST')
@@ -76,7 +76,7 @@ BER = config.get('test','BER')
 err_req = config.getint('test','err_req')
 include_all_results = config.getboolean('test','include_all_results')
 
-mgt = format_to_list(mgt)
+mgt_rx = format_to_list(mgt_rx)
 mgt_tx = format_to_list(mgt_tx)
 TXDIFFSWING = format_to_list(TXDIFFSWING)
 TXPOST = format_to_list(TXPOST)
@@ -95,9 +95,9 @@ transm.source("./" + tcl_dir + tcl_transm_name + ".tcl")
 
 create_dir(results_dir)
 
-for mgt_idx in range(len(mgt)):
+for mgt_idx in range(len(mgt_rx)):
 
-    f = open("./" + results_dir + results_name + "Rx" + mgt[mgt_idx] + "_Tx" +mgt_tx[mgt_idx] + "_ErrReq" + str(err_req) + "_BER" + BER.replace("\"","") + ".csv","w")
+    f = open("./" + results_dir + results_name + "Rx" + mgt_rx[mgt_idx] + "_Tx" +mgt_tx[mgt_idx] + "_ErrReq" + str(err_req) + "_BER" + BER.replace("\"","") + ".csv","w")
     f.write("TXDIFFSWING"
             + "," + "TXPRE"
             + "," + "TXPOST"
@@ -105,7 +105,7 @@ for mgt_idx in range(len(mgt)):
             + "," + "Error_Count"
             + "," + "Open Area"
             + "\n")
-    obj = "get_hw_sio_links *MGT_" + mgt[mgt_idx] + "/RX"
+    obj = "get_hw_sio_links *MGT_" + mgt_rx[mgt_idx] + "/RX"
     obj_tx = "get_hw_sio_links *MGT_" + mgt_tx[mgt_idx] + "/RX" # /RX is the end of the string
 
     rcv.scan_remove_all()
@@ -134,7 +134,7 @@ for mgt_idx in range(len(mgt)):
                     transm.reset_all_gth_tx()
                     rcv.reset_all_gth_rx()
 
-                    print("------ Transceiver - " + mgt[mgt_idx])
+                    print("------ Transceiver - " + mgt_rx[mgt_idx])
                     print("------ Iter: " + str(iter))
                     print(iter)
                     iter = iter+1
@@ -194,7 +194,7 @@ for mgt_idx in range(len(mgt)):
     write_result_csv(f, best_diff, best_txpre, best_txpost, best_rx, best_err, best_area)
     f.close()
 
-    print("End of " + mgt[mgt_idx])
+    print("End of " + mgt_rx[mgt_idx])
 
 transm.close_hw()
 rcv.close_hw()

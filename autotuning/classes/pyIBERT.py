@@ -72,9 +72,7 @@ class pyIBERT(XilinxTCL):
     self.sendCommand("remove_hw_sio_scan [get_hw_sio_scans]")
 
   def set_property(self, prop, value, obj):
-#    print("set_property " + prop + " {" + str(value) + "} [" + obj + "]")
     self.sendCommand("set_property " + prop + " {" + str(value) + "} [" + obj + "]")
-#    print("commit_hw_sio" + " [" + obj + "]")
     self.sendCommand("commit_hw_sio" + " [" + obj + "]")
 
   def get_property(self, prop, obj):
