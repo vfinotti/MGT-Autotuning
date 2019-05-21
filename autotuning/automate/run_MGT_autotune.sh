@@ -11,13 +11,12 @@ source $XIL
 
 # open first and second Vivado instance and configure the FPGAs
 trap 'kill -TERM $vivado1_pid' EXIT
-vivado -mode tcl -source hw_vcu118.tcl &
+vivado -mode tcl -source hw_yugevu1.tcl &
 vivado1_pid=$!
 sleep 30
 trap 'kill -TERM $vivado2_pid' EXIT
-vivado -mode tcl -source hw_yugevu1.tcl &
+vivado -mode tcl -source hw_vcu118.tcl &
 vivado2_pid=$!
-
 sleep 30
 
 # run IBERT sweep
