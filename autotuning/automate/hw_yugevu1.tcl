@@ -7,9 +7,9 @@ connect_hw_server
 #current_hw_device [get_hw_devices xcku115_0]
 #refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xcku115_0] 0]
 #close_hw_target
-open_hw_target -verbose -xvc_url 128.138.133.229:2542
-close_hw_target									;# Somehow it needs this two commands.
-open_hw_target -xvc_url 128.138.133.229:2542	;# I do not know why.
+open_hw_target -quiet -xvc_url 128.138.133.229:2542
+close_hw_target											;# Somehow it needs this two commands.
+open_hw_target -verbose -xvc_url 128.138.133.229:2542	;# I do not know why.
 
 # configure the FPGA
 #set_property PROBES.FILE {/nfs/data41/rogl2082/FPGA/XCVU080/vivado/ibert_129_28125_ex/ibert_129_28125_ex.runs/impl_1/example_ibert_129_28125.ltx} [get_hw_devices xcvu080_0]
