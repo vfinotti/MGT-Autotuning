@@ -20,8 +20,8 @@
 # Date        Version  Author          Description
 # 2017-Jul-12 1.0      vfinotti        Created
 # 2019-Mar-26 1.1      rglein          Added support for different Rx and Tx.
-#                                      Added error counter und BER as in config
-#                                      and print.
+#                                      Added error counter and BER as defined 
+#                                      in config and print it in results.
 #-----------------------------------------------------------------------------
 
 
