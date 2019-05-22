@@ -41,12 +41,16 @@ class pyIBERT(XilinxTCL):
     time.sleep(3) # required delay to refresh information (xilinx bug)
     self.sendCommand("disconnect_hw_server " + self.server_url)
     self.sendCommand("connect_hw_server -url "+ self.server_url)
-    self.sendCommand("current_hw_target [get_hw_targets */xilinx_tcf/*"
-                     + self.target_name + "*]")
-    self.sendCommand("set_property PARAM.FREQUENCY " + self.target_freq
-                     + " [get_hw_targets */xilinx_tcf/*"
-                     + self.target_name + "*]")
-    self.sendCommand("open_hw_target")
+    if self.target_freq == '0': # for xvc
+      self.sendCommand("open_hw_target -verbose -xvc_url "
+                       + self.target_name)
+    else:
+      self.sendCommand("current_hw_target [get_hw_targets */xilinx_tcf/*"
+                       + self.target_name + "*]")
+      self.sendCommand("set_property PARAM.FREQUENCY " + self.target_freq
+                       + " [get_hw_targets */xilinx_tcf/*"
+                       + self.target_name + "*]")
+      self.sendCommand("open_hw_target")
     self.sendCommand("current_hw_device [lindex [get_hw_devices] 0]")
     self.sendCommand("refresh_hw_device -update_hw_probes false [lindex [get_hw_devices] 0]")
 
